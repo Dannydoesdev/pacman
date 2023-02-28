@@ -47,21 +47,28 @@ const pacManGame = (commands) => {
   let compass = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
 
-  commands.forEach((command) => {
+  commands.map((command) => {
 
     // check for PLACE command & start game - if already stared, ignore
     if (command.startsWith('PLACE')) {
       started ? console.log('already started') : started = true
       console.log(started)
-      let placeCoords = command.split(',')
-      console.log(placeCoords)
+      let placeCoords = command.slice(6).split(',')
+      // console.log(placeRemoval)
+      coordsX = parseInt(placeCoords[0])
+      coordsY = placeCoords[1]
+      direction = placeCoords[2]
+      // let placeCoords = command.split(',')
+      // console.log(placeCoords)
     }
+   
     
     // if the game hasn't started - ignore command
     if (!started) { return }
     
     console.log(command)
   })
+  console.log(`Starting at (${coordsX},${coordsY}) facing ${direction}`)
 // console.log(commands)
 
 }
