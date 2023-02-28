@@ -50,12 +50,12 @@ const pacManGame = (commands) => {
 
   commands.map((command) => {
     console.log(command)
-    // check for PLACE command & start game - if already stared, ignore
+    // check for PLACE command & start game - if already stared, restart
     if (command.startsWith('PLACE')) {
 
       if (started) {
-        console.log(`${command} ignored`);
-        return
+        console.log(`Restarting at ${command}`);
+        // return
       }
 
       // Start game
@@ -65,8 +65,18 @@ const pacManGame = (commands) => {
       // remove the word PLACE & split by comma
       let placeCoords = command.slice(6).split(',')
      
+      // If invalid placement - return
+      if (parseInt(placeCoords[0]) >= 5 || parseInt(placeCoords[0]) <= -1
+        || parseInt(placeCoords[1] >= 5 || parseInt(placeCoords[1]) <= -1)) {
+        
+        console.log('Pacman cant start there')
+        return
+
+        }
+
       coordsX = parseInt(placeCoords[0])
       coordsY = parseInt(placeCoords[1])
+
       direction = placeCoords[2]
      
       console.log(`Starting at (${coordsX},${coordsY}) facing ${direction}`)
@@ -163,18 +173,20 @@ let testCommands4 = ['MOVE', 'PLACE 1,2,EAST', 'RIGHT', 'RIGHT', 'LEFT', 'RIGHT'
 let testCommands5 = ['MOVE', 'PLACE 1,2,EAST', 'RIGHT', 'RIGHT', 'RIGHT', 'RIGHT', 'PLACE 3,2,NORTH', 'RIGHT', 'LEFT', 'LEFT', 'LEFT', 'LEFT', 'LEFT', 'REPORT']
 let testCommands6 = ['MOVE', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'MOVE', 'MOVE',
   'MOVE', 'LEFT', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'REPORT']
+  let testCommands7 = ['MOVE', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'MOVE', 'MOVE',
+  'MOVE', 'LEFT', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'MOVE', 'REPORT', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE', 'REPORT']
 
-
-
-console.log('\n---GAME 1---\n')
-pacManGame(testCommands1)
-console.log('\n---GAME 2---\n')
-pacManGame(testCommands2)
-console.log('\n---GAME 3---\n')
-pacManGame(testCommands3)
+// console.log('\n---GAME 1---\n')
+// pacManGame(testCommands1)
+// console.log('\n---GAME 2---\n')
+// pacManGame(testCommands2)
+// console.log('\n---GAME 3---\n')
+// pacManGame(testCommands3)
 // console.log('\n---GAME 4---\n')
 // pacManGame(testCommands4)
 // console.log('\n---GAME 5---\n')
 // pacManGame(testCommands5)
 // console.log('\n---GAME 6---\n')
 // pacManGame(testCommands6)
+console.log('\n---GAME 7---\n')
+pacManGame(testCommands7)
