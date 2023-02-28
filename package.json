@@ -1,0 +1,23 @@
+{
+  "name": "pacman",
+  "version": "1.0.0",
+  "description": "Code problem details:",
+  "main": "pacman.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dannydoesdev/pacman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dannydoesdev/pacman/issues"
+  },
+  "homepage": "https://github.com/Dannydoesdev/pacman#readme",
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
