@@ -45,6 +45,7 @@ const pacManGame = (commands) => {
   let coordsY = 0;
   let direction = '';
   let compass = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+  let moves = ['LEFT', 'RIGHT'];
 
 
   commands.map((command) => {
@@ -53,26 +54,44 @@ const pacManGame = (commands) => {
     if (command.startsWith('PLACE')) {
       started ? console.log('already started') : started = true
       console.log(started)
+
+      // remove the word PLACE & split by comma
       let placeCoords = command.slice(6).split(',')
       // console.log(placeRemoval)
       coordsX = parseInt(placeCoords[0])
-      coordsY = placeCoords[1]
+      coordsY = parseInt(placeCoords[1])
       direction = placeCoords[2]
       // let placeCoords = command.split(',')
       // console.log(placeCoords)
-    }
-   
-    
+      console.log(`Starting at (${coordsX},${coordsY}) facing ${direction}`)
+    } 
     // if the game hasn't started - ignore command
     if (!started) { return }
+
+    if (command == 'RIGHT') {
+      console.log(command)
+      let newDirectionIndex = (compass.indexOf(direction) + 1)
+      let newDirection = compass[newDirectionIndex]
+      // console.log(newDirection)
+      console.log(`New direction ${newDirection}`)
+    } else if ((command == 'LEFT')) {
+      let newDirectionIndex = (compass.indexOf(direction) - 1)
+      let newDirection = compass[newDirectionIndex]
+      // console.log(newDirection)
+      console.log(`New direction ${newDirection}`)
+    }
     
     console.log(command)
   })
-  console.log(`Starting at (${coordsX},${coordsY}) facing ${direction}`)
+  
 // console.log(commands)
 
 }
 
-let testCommands = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT']
+let testCommands1 = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT']
+let testCommands2 = ['MOVE', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE', 'REPORT']
 
-pacManGame(testCommands)
+console.log('Game 1')
+pacManGame(testCommands1)
+console.log('Game 2')
+pacManGame(testCommands2)
