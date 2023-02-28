@@ -89,9 +89,14 @@ const pacManGame = (commands) => {
 }
 
 let testCommands1 = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT']
-let testCommands2 = ['MOVE', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE', 'REPORT']
+let testCommands2 = ['MOVE', 'PLACE 0,0,NORTH', 'LEFT', 'REPORT']
+let testCommands3 = ['MOVE', 'PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE', 'REPORT']
+
+
 
 console.log('Game 1')
 pacManGame(testCommands1)
 console.log('Game 2')
 pacManGame(testCommands2)
+console.log('Game 3')
+pacManGame(testCommands3)
