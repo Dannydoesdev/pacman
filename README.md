@@ -1,6 +1,14 @@
-# pacman
+# Pacman
 
-Code problem details:
+### Testing notes:
+
+- Download zip or git clone
+- Install dependencies with ```npm i```
+- Run tests with ```npm run test```
+
+-----------
+
+### Code problem details:
 
 -----------
 
