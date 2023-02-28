@@ -140,10 +140,21 @@ const pacManGame = (commands) => {
 
     }
 
+    if (command == 'REPORT') {
+      console.log(`Output: ${coordsX},${coordsY},${direction}`)
+    }
+
   })
-  console.log(`Ending at (${coordsX},${coordsY}) facing ${direction}`)
+  // console.log(`Ending at (${coordsX},${coordsY}) facing ${direction}`)
 
 }
+
+// NOTES
+// Extra Place commands are allowed:
+// The first valid command to Pacman is a PLACE command, after that, any sequence of commands may be issued, in any order, including another PLACE command.
+
+// PLACE must check for invalid coordinates
+// Pacman must not move off the grid during movement. This also includes the initial placement of Pacman.
 
 let testCommands1 = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT']
 let testCommands2 = ['MOVE', 'PLACE 0,0,NORTH', 'LEFT', 'REPORT']
@@ -161,9 +172,9 @@ console.log('\n---GAME 2---\n')
 pacManGame(testCommands2)
 console.log('\n---GAME 3---\n')
 pacManGame(testCommands3)
-console.log('\n---GAME 4---\n')
-pacManGame(testCommands4)
-console.log('\n---GAME 5---\n')
-pacManGame(testCommands5)
-console.log('\n---GAME 6---\n')
-pacManGame(testCommands6)
+// console.log('\n---GAME 4---\n')
+// pacManGame(testCommands4)
+// console.log('\n---GAME 5---\n')
+// pacManGame(testCommands5)
+// console.log('\n---GAME 6---\n')
+// pacManGame(testCommands6)
