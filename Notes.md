@@ -11,7 +11,7 @@ Grid 5 x 5
   0 1 2 3 4
 ```
 
-- (0,0) = starts at South West cornet
+- (0,0) = starts at South West corner
 - X = A valid Pacman location
 
 ### Available commands:

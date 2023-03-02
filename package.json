@@ -4,7 +4,8 @@
   "description": "Code problem details:",
   "main": "pacman.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "console": "node pacman.js"
   },
   "repository": {
     "type": "git",
