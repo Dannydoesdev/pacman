@@ -1,16 +1,16 @@
-const pacManGame = (commands) => {
+export function pacManGame(commands?: string[])  {
   if (!commands) {
     console.log('No commands receive');
     return;
   }
 
   let started = false;
-  let coordsX = null;
-  let coordsY = null;
-  let direction = '';
-  let compass = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
-  let output = '';
-  let pacManGrid = [
+  let coordsX: number | null = null;
+  let coordsY: number | null = null;
+  let direction: string = '';
+  let compass: string[] = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+  let output: string = '';
+  let pacManGrid: string[][] = [
     ['X', 'X', 'X', 'X', 'X'],
     ['X', 'X', 'X', 'X', 'X'],
     ['X', 'X', 'X', 'X', 'X'],
@@ -18,7 +18,7 @@ const pacManGame = (commands) => {
     ['X', 'X', 'X', 'X', 'X'],
   ];
 
-  commands.map((command) => {
+  commands.forEach((command) => {
     // check for PLACE command & start game - if already stared, restart
     if (command.startsWith('PLACE')) {
       if (started) {
@@ -80,7 +80,7 @@ const pacManGame = (commands) => {
       direction = newDirection;
     }
 
-    if (command == 'MOVE') {
+    if (command == 'MOVE' && coordsX !== null && coordsY !== null) {
       if (direction == 'NORTH') {
         coordsY >= 4
           ? console.log('Pacman cant go further that way')
@@ -247,4 +247,4 @@ pacManGame(testCommands9);
 console.log('\n---GAME 10---\n');
 pacManGame(testCommands10);
 
-module.exports = pacManGame;
+// module.exports = pacManGame;

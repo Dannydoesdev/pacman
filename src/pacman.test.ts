@@ -1,4 +1,5 @@
-const pacManGame = require('./pacman')
+// require('./pacman.ts')
+import { pacManGame } from "./pacman";
 
 describe('Pacman Game', () => {
 
@@ -67,8 +68,7 @@ describe('Pacman Game', () => {
 
   test('should return undefined if no commands issues', () => {
     const expectedOutput = undefined;
-    const commands = '';
-    const result = pacManGame(commands);
+    const result = pacManGame();
     expect(result).toEqual(expectedOutput);
   });
 
