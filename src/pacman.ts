@@ -1,4 +1,4 @@
-export function pacManGame(commands?: string[])  {
+export function pacManGame(commands?: string[]) {
   if (!commands) {
     console.log('No commands receive');
     return;
@@ -18,7 +18,7 @@ export function pacManGame(commands?: string[])  {
     ['X', 'X', 'X', 'X', 'X'],
   ];
 
-  commands.forEach((command) => {
+  for (const command of commands) {
     // check for PLACE command & start game - if already stared, restart
     if (command.startsWith('PLACE')) {
       if (started) {
@@ -40,7 +40,7 @@ export function pacManGame(commands?: string[])  {
         parseInt(placeCoords[1]) <= -1
       ) {
         console.log(`Pacman cant start at ${placeCoords[0]},${placeCoords[1]}`);
-        return;
+        continue;
       }
 
       coordsX = parseInt(placeCoords[0]);
@@ -54,7 +54,7 @@ export function pacManGame(commands?: string[])  {
     // if the game hasn't started - ignore command
     if (!started) {
       console.log(`${command} ignored`);
-      return;
+      continue;
     }
 
     if (command == 'RIGHT') {
@@ -67,6 +67,8 @@ export function pacManGame(commands?: string[])  {
 
       let newDirection = compass[newDirectionIndex];
       direction = newDirection;
+
+      continue;
     } else if (command == 'LEFT') {
       let newDirectionIndex = compass.indexOf(direction) - 1;
 
@@ -78,6 +80,7 @@ export function pacManGame(commands?: string[])  {
       // Update direction to newDirection (based on incremented index)
       let newDirection = compass[newDirectionIndex];
       direction = newDirection;
+      continue;
     }
 
     if (command == 'MOVE' && coordsX !== null && coordsY !== null) {
@@ -102,6 +105,7 @@ export function pacManGame(commands?: string[])  {
           : coordsX--;
         pacManGrid[coordsX][coordsY] = '|';
       }
+      continue;
     }
 
     if (command == 'REPORT') {
@@ -113,15 +117,17 @@ export function pacManGame(commands?: string[])  {
         output = `${coordsX},${coordsY},${direction}`;
       }
     }
-  });
+  }
 
   console.log(`Output: ${output}`);
 
   // Log Pacmans steps visually in cmd line
   console.log('Here is your journey:');
   console.log(pacManGrid.reverse());
+
   return output;
-};
+}
+
 
 let testCommands1 = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT'];
 let testCommands2 = ['MOVE', 'PLACE 0,0,NORTH', 'LEFT', 'REPORT'];
@@ -247,4 +253,27 @@ pacManGame(testCommands9);
 console.log('\n---GAME 10---\n');
 pacManGame(testCommands10);
 
-// module.exports = pacManGame;
+
+// Test 10000 steps performance
+
+
+// const testCommands = [
+//   'LEFT',
+//   'RIGHT',
+//   'MOVE',
+//   'PLACE 0,0,NORTH',
+//   'PLACE 3,3,WEST',
+// ];
+
+// const commandsArray = new Array(100000).fill('').map(() => {
+//   const randomIndex = Math.floor(Math.random() * testCommands.length);
+//   return testCommands[randomIndex];
+// });
+
+// Call the commands array and measure the elapsed time
+
+// const start = performance.now();
+// pacManGame(commandsArray);
+// const end = performance.now();
+// const elapsed = end - start;
+// console.log(`Elapsed time: ${elapsed} ms`);
