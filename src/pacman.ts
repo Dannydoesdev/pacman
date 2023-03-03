@@ -18,7 +18,10 @@ export function pacManGame(commands?: string[])  {
     ['X', 'X', 'X', 'X', 'X'],
   ];
 
-  commands.forEach((command) => {
+  for (const command of commands) {
+
+    console.log(command)
+    // commands.forEach((command) => {
     // check for PLACE command & start game - if already stared, restart
     if (command.startsWith('PLACE')) {
       if (started) {
@@ -40,7 +43,7 @@ export function pacManGame(commands?: string[])  {
         parseInt(placeCoords[1]) <= -1
       ) {
         console.log(`Pacman cant start at ${placeCoords[0]},${placeCoords[1]}`);
-        return;
+        continue;
       }
 
       coordsX = parseInt(placeCoords[0]);
@@ -54,7 +57,7 @@ export function pacManGame(commands?: string[])  {
     // if the game hasn't started - ignore command
     if (!started) {
       console.log(`${command} ignored`);
-      return;
+      continue;
     }
 
     if (command == 'RIGHT') {
@@ -67,6 +70,8 @@ export function pacManGame(commands?: string[])  {
 
       let newDirection = compass[newDirectionIndex];
       direction = newDirection;
+
+      continue;
     } else if (command == 'LEFT') {
       let newDirectionIndex = compass.indexOf(direction) - 1;
 
@@ -78,6 +83,7 @@ export function pacManGame(commands?: string[])  {
       // Update direction to newDirection (based on incremented index)
       let newDirection = compass[newDirectionIndex];
       direction = newDirection;
+      continue;
     }
 
     if (command == 'MOVE' && coordsX !== null && coordsY !== null) {
@@ -102,6 +108,7 @@ export function pacManGame(commands?: string[])  {
           : coordsX--;
         pacManGrid[coordsX][coordsY] = '|';
       }
+      continue;
     }
 
     if (command == 'REPORT') {
@@ -113,7 +120,8 @@ export function pacManGame(commands?: string[])  {
         output = `${coordsX},${coordsY},${direction}`;
       }
     }
-  });
+  }
+  // });
 
   console.log(`Output: ${output}`);
 
