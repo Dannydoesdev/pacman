@@ -1,3 +1,21 @@
+## Architecture/Approach:
+
+- Initalise variables outside of loop to track current co-ords, direction, pacmans grid movmement & possible compass inputs as an array
+- Loop over the array of strings:
+- Check for ```PLACE``` commands, split into the above variables with co-ords & direction
+- Ignore commands if ```PLACE``` has not been received yet
+
+- If a direction is received, iterate over the compass array to move in the respective direction (eg ```LEFT``` while facing North would mean ```WEST```)
+- If the direction goes outside the array (end of compass), start again from the other end
+
+- If ```MOVE``` is received, check whether Pacman is at an edge, if not increment/de-increment the relevant co-ordinate variable to track location
+- Add a | or - to show Pacman has crossed this sqaure in the grid in that direction
+
+- If ```REPORT``` is received - output the final co-ordinates & direction, as well as adding an emoji to the grid representing location of Pacman at that time
+- Console.log pacmans journey with the grid
+
+
+
 ## Setup:
 
 Grid 5 x 5
@@ -45,9 +63,8 @@ REPORT
 Output: 0,1,NORTH
 ```
 
+### Approach quick notes:
 
-
-## Approach:
 - Assume cmds are strings in an array (can change later)
 - Always keep track of location - iterate values based on 'move' commands
 - Always keep track of direction - denote that LEFT and RIGHT corresponds to compass directions
