@@ -1,4 +1,4 @@
-# Pacman
+# Pacman - Daniel McGee
 
 ### Testing notes:
 
@@ -6,6 +6,8 @@
 - Install dependencies with ```npm i```
 - Run tests with ```npm run test```
 - You can also run examples in console by running ```npm run console```
+
+#### My notes on approach can be found in Notes.md
 
 -----------
 
