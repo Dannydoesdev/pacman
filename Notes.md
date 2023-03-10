@@ -21,11 +21,12 @@
 Grid 5 x 5
 
 ```
-4 X X X X X 
-3 X X X X X
-2 X X X X X
-1 X X X X X
-0 X X X X X
+-- X axis --
+4 X X X X X    |
+3 X X X X X    |
+2 X X X X X  Y axis
+1 X X X X X    |
+0 X X X X X    |
   0 1 2 3 4
 ```
 
