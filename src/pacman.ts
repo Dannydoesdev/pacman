@@ -24,7 +24,6 @@ export function pacManGame(commands?: string[]) {
       if (started) {
         console.log(`Restarting at ${command}`);
       } else {
-        // Start game
         console.log('Starting Game!');
         started = true;
       }
@@ -54,14 +53,13 @@ export function pacManGame(commands?: string[]) {
 
     // if the game hasn't started - ignore command
     if (!started) {
-      console.log(`${command} ignored`);
       continue;
     }
 
     if (command == 'RIGHT') {
       let newDirectionIndex = compass.indexOf(direction) + 1;
 
-      // Check for directions going outside of compass array & reset
+      // Check for directions going outside of compass array & reset if necessary
       if (newDirectionIndex == 4) {
         newDirectionIndex = 0;
       }
@@ -73,14 +71,12 @@ export function pacManGame(commands?: string[]) {
     } else if (command == 'LEFT') {
       let newDirectionIndex = compass.indexOf(direction) - 1;
 
-      // Check for directions going outside of compass array & reset
       if (newDirectionIndex == -1) {
         newDirectionIndex = 3;
       }
 
-      // Update direction to newDirection (based on incremented index)
-      let newDirection = compass[newDirectionIndex];
-      direction = newDirection;
+      // Update direction when turning to keep track of where pacman is pointing
+      direction = compass[newDirectionIndex];
       continue;
     }
 
@@ -111,10 +107,8 @@ export function pacManGame(commands?: string[]) {
 
     if (command == 'REPORT') {
       if (coordsX === null || coordsY === null) {
-        // console.log('no valid placement - resetting output');
         output = '';
       } else {
-        // pacManGrid[coordsY][coordsX] = '🥳'😁;
         pacManGrid[coordsY][coordsX] = '❤';
         output = `${coordsX},${coordsY},${direction}`;
       }
