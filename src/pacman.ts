@@ -1,6 +1,6 @@
 export function pacManGame(commands?: string[]) {
   if (!commands) {
-    console.log('No commands receive');
+    console.log('No commands received');
     return;
   }
 
