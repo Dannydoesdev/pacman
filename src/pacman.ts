@@ -49,6 +49,7 @@ export function pacManGame(commands?: string[]) {
       direction = placeCoords[2];
 
       console.log(`Starting at (${coordsX},${coordsY}) facing ${direction}`);
+      pacManGrid[coordsY][coordsX] = 'O';
     }
 
     // if the game hasn't started - ignore command
@@ -88,22 +89,22 @@ export function pacManGame(commands?: string[]) {
         coordsY >= 4
           ? console.log('Pacman cant go further that way')
           : coordsY++;
-        pacManGrid[coordsX][coordsY] = '-';
+        pacManGrid[coordsY][coordsX] = '|';
       } else if (direction == 'EAST') {
         coordsX >= 4
           ? console.log('Pacman cant go further that way')
           : coordsX++;
-        pacManGrid[coordsX][coordsY] = '|';
+        pacManGrid[coordsY][coordsX] = '-';
       } else if (direction == 'SOUTH') {
         coordsY <= 0
           ? console.log('Pacman cant go further that way')
           : coordsY--;
-        pacManGrid[coordsX][coordsY] = '-';
+        pacManGrid[coordsY][coordsX] = '|';
       } else if (direction == 'WEST') {
         coordsX <= 0
           ? console.log('Pacman cant go further that way')
           : coordsX--;
-        pacManGrid[coordsX][coordsY] = '|';
+        pacManGrid[coordsY][coordsX] = '-';
       }
       continue;
     }
@@ -113,7 +114,8 @@ export function pacManGame(commands?: string[]) {
         // console.log('no valid placement - resetting output');
         output = '';
       } else {
-        pacManGrid[coordsX][coordsY] = '🥳';
+        // pacManGrid[coordsY][coordsX] = '🥳'😁;
+        pacManGrid[coordsY][coordsX] = '❤';
         output = `${coordsX},${coordsY},${direction}`;
       }
     }
@@ -122,12 +124,25 @@ export function pacManGame(commands?: string[]) {
   console.log(`Output: ${output}`);
 
   // Log Pacmans steps visually in cmd line
-  console.log('Here is your journey:');
-  console.log(pacManGrid.reverse());
+  console.log('Here is your journey from O to ❤:');
+
+  // reverse PacmanGrid arrays to correct iteration direction
+  pacManGrid = pacManGrid.reverse();
+
+  // count for Y axis output
+  let count = 4;
+
+  // loop over arrays and add spacing for better visualisation
+  for (let singleArr of pacManGrid) {
+    console.log(`${count}  ${singleArr.join(' ')}`);
+    count--;
+  }
+
+  // count for X axis output
+  console.log(`   0 1 2 3 4`);
 
   return output;
 }
-
 
 let testCommands1 = ['MOVE', 'PLACE 0,0,NORTH', 'MOVE', 'REPORT'];
 let testCommands2 = ['MOVE', 'PLACE 0,0,NORTH', 'LEFT', 'REPORT'];
@@ -153,17 +168,14 @@ let testCommands4 = [
 let testCommands5 = [
   'MOVE',
   'PLACE 1,2,EAST',
-  'RIGHT',
-  'RIGHT',
-  'RIGHT',
-  'RIGHT',
-  'PLACE 3,2,NORTH',
-  'RIGHT',
+  'MOVE',
+  'MOVE',
   'LEFT',
+  'MOVE',
+  'MOVE',
   'LEFT',
-  'LEFT',
-  'LEFT',
-  'LEFT',
+  'MOVE',
+  'MOVE',
   'REPORT',
 ];
 let testCommands6 = [
@@ -253,9 +265,7 @@ pacManGame(testCommands9);
 console.log('\n---GAME 10---\n');
 pacManGame(testCommands10);
 
-
 // Test 10000 steps performance
-
 
 // const testCommands = [
 //   'LEFT',
